@@ -15,6 +15,10 @@ class Base(DeclarativeBase) :
     pass
 
 
+def get_db () :
+    db = sessionmaker()
+    return db
+
 class BasicTabale (Base) :
     __abstract__ = True
     id = Column(Integer , primary_key=True)
