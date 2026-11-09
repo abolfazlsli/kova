@@ -1,0 +1,28 @@
+fastapi
+uvicorn[standard]
+
+# Database
+sqlalchemy
+psycopg2-binary
+alembic
+
+# Validation & Settings
+pydantic
+pydantic-settings
+python-dotenv
+
+# Authentication & Security
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
+
+# File Upload
+python-multipart
+aiofiles
+
+# HTTP Client
+httpx
+requests
+
+# Utilities
+email-validator
