@@ -15,19 +15,25 @@ def send_user_profile () :
 
 @router.post("/get-phone")
 def get_user_phone(
-    data : schema.SendPhoneDto = Body()
+    data : schema.SendPhoneDto = Body() , 
+    db : Session = Depends(get_db)
 ) :
     return service.getPhoneService(
         data=data , 
-        db = None
+        db = db
     )
 
 
 
 @router.post("/verify-phone")
 def check_verifycation_code (
+    data : schema.CodeDto = Body() ,
+    db : Session = Depends(get_db)
 ) :
-    return
+    return service.verifyCode(
+        data , 
+        db
+    )
 
 
 

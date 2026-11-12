@@ -13,4 +13,23 @@ def getPhoneService (
     )
     db.add(verify_code)
     db.commit()
-    return code
+    return {
+        "result" : "verify code smnt"
+    }
+
+
+def verifyCode (
+        data : schema.CodeDto , 
+        db : Session
+) :
+    verify = db.query(VerifycationCode).filter(
+        VerifycationCode.code == data.code , 
+        VerifycationCode.phone == data.phone
+    ).one_or_none()
+    if not verify :
+        return {
+            "result" : "verify not valid"
+        }
+    return {
+        "result" : "verify valid"
+    }

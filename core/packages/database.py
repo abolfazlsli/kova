@@ -9,16 +9,23 @@ engine = create_engine(
 
 
 def create_random_id () :
-    return uuid.uuid8()
+    return str(uuid.uuid4())
 
 class Base(DeclarativeBase) :
     pass
 
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
 
-def get_db () :
-    db = sessionmaker()
-    return db
-
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+       db.close()
 class BasicTabale (Base) :
     __abstract__ = True
     id = Column(Integer , primary_key=True)
